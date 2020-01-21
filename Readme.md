@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Данил Милостивый](https://up.htmlacademy.ru/javascript/19/user/166412).
-* Наставник: `Неизвестно`.
+* Наставник: [Владимир Кашапов](https://up.htmlacademy.ru/javascript/19/user/214503).
 
 ---
 
