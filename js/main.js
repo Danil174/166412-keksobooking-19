@@ -88,7 +88,7 @@ var renderPin = function (pin) {
 
 advArray = createArray();
 
-for (var i = 0; i <advArray.length; i++) {
+for (var i = 0; i < advArray.length; i++) {
   fragment.appendChild(renderPin(advArray[i]));
 }
 
