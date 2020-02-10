@@ -14,6 +14,8 @@
   var APARTMENT_OPTIONS = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var PHOTO_URLS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
+  var map = document.querySelector('.map');
+  var mapPins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
   var mapContainer = document.querySelector('.map__pins');
   var pinTempalete = document.querySelector('#pin').content;
   var newMessageTemplate = pinTempalete.querySelector('.map__pin');
@@ -131,9 +133,10 @@
     return photosFragment;
   };
 
-  var renderCard = function (card) {
-    var newCard = cardPattern.cloneNode(true);
 
+  var newCard = cardPattern.cloneNode(true);
+
+  var renderCard = function (card) {
     newCard.querySelector('.popup__title').textContent = card.offer.title;
     newCard.querySelector('.popup__text--address').textContent = card.offer.address;
     newCard.querySelector('.popup__text--price').textContent = card.offer.price + '₽/ночь.';
@@ -146,8 +149,9 @@
     newCard.querySelector('.popup__photos').innerHTML = '';
     newCard.querySelector('.popup__photos').appendChild(rendePhotos(card.offer.photos));
     newCard.querySelector('.popup__avatar').src = card.author.avatar;
-
-    return newCard;
+    // mapContainer.after(newCard);
+    map.insertBefore(newCard, undefined);
+    // return newCard;
   };
 
   advArray = createArray();
@@ -160,12 +164,12 @@
   mapContainer.appendChild(fragment);
 
   var onPinClick = function (pin) {
-    mapContainer.after(renderCard(pin));
+    renderCard(pin);
   };
 
   var onPinKeydown = function (evt, pin) {
     if (evt.keyCode === 13) {
-      mapContainer.after(renderCard(pin));
+      renderCard(pin);
     }
   };
 
