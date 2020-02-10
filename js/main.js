@@ -14,7 +14,7 @@
   var APARTMENT_OPTIONS = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var PHOTO_URLS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
-  var mapContainer = document.querySelector('.map__pins');
+  // var mapContainer = document.querySelector('.map__pins');
   var pinTempalete = document.querySelector('#pin').content;
   var newMessageTemplate = pinTempalete.querySelector('.map__pin');
   var fragment = document.createDocumentFragment();
