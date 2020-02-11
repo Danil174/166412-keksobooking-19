@@ -15,14 +15,13 @@
   var PHOTO_URLS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
   var map = document.querySelector('.map');
-  var mapPins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
+  var filters = map.querySelector('.map__filters-container');
   var mapContainer = document.querySelector('.map__pins');
   var pinTempalete = document.querySelector('#pin').content;
   var newMessageTemplate = pinTempalete.querySelector('.map__pin');
   var fragment = document.createDocumentFragment();
   var cardTemplate = document.querySelector('#card').content;
   var cardPattern = cardTemplate.querySelector('.map__card');
-  var cards = document.createDocumentFragment();
   var advArray;
 
   var getRandomMinMax = function (min, max) {
@@ -133,6 +132,9 @@
     return photosFragment;
   };
 
+  var closeCard = function () {
+    newCard.remove();
+  };
 
   var newCard = cardPattern.cloneNode(true);
 
@@ -149,16 +151,28 @@
     newCard.querySelector('.popup__photos').innerHTML = '';
     newCard.querySelector('.popup__photos').appendChild(rendePhotos(card.offer.photos));
     newCard.querySelector('.popup__avatar').src = card.author.avatar;
-    // mapContainer.after(newCard);
-    map.insertBefore(newCard, undefined);
-    // return newCard;
+
+    var closeBtn = newCard.querySelector('.popup__close');
+    //вынести функцию, удалять обработчики событий
+    closeBtn.addEventListener('mousedown', function (evt) {
+      if (evt.button === 0) {
+        closeCard();
+      }
+    });
+
+    document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 27) {
+        closeCard();
+      }
+    });
+
+    map.insertBefore(newCard, filters);
   };
 
   advArray = createArray();
 
   for (var i = 0; i < advArray.length; i++) {
     fragment.appendChild(renderPin(advArray[i]));
-    // cards.appendChild(renderCard(advArray[i]));
   }
 
   mapContainer.appendChild(fragment);
@@ -172,6 +186,5 @@
       renderCard(pin);
     }
   };
-
-  // mapContainer.after(cards);
+  //спросить про удаление обработчика, при удалении элемента
 })();

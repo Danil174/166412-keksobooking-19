@@ -124,4 +124,6 @@
 
   submitBtn.addEventListener('click', validateForm);
 
+  //добавить проверку картинки
+
 })();
