@@ -92,7 +92,6 @@
   for (var j = 0; j < fieldsets.length; j++) {
     fieldsets[j].disabled = true;
   }
-  //добавить проверку картинки
 
   window.form = {
     unlockForm: unlockForm,
