@@ -18,7 +18,7 @@
     CHECKIN_TIME: ['12:00', '13:00', '14:00'],
     CHECOUT_TIME: ['12:00', '13:00', '14:00'],
     APARTMENT_OPTIONS: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
-    PHOTO_URLS:['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg']
+    PHOTO_URLS: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg']
   };
 
   var PIN_MARGIN_TOP = 48;

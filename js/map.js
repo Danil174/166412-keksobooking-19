@@ -3,8 +3,7 @@
 (function () {
   var map = document.querySelector('.map');
   var mainPin = document.querySelector('.map__pin--main');
-
-  // var addressInput = window.form.form.querySelector('#address');
+  var mapContainer = document.querySelector('.map__pins');
 
   var initMainPin = function () {
     mainPin.addEventListener('click', onMainPinClick);
@@ -14,6 +13,7 @@
   var enableMap = function () {
     map.classList.remove('map--faded');
     window.form.unlockForm();
+    mapContainer.appendChild(window.pins.fragment);
   };
 
   var onMainPinClick = function () {

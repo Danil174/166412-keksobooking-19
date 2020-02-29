@@ -49,14 +49,14 @@
 
       pin.style.top = newTop + 'px';
       pin.style.left = newLeft + 'px';
-    }
+    };
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
-    }
+    };
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
