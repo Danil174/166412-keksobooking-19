@@ -29,10 +29,18 @@
     }
   };
 
+  var initMap = function () {
+    map.classList.add('map--faded');
+    initMainPin();
+
+    window.card.remove();
+    window.form.disable();
+  };
+
   var mainPinLeftCord = Math.round(mainPin.offsetLeft + mainPin.offsetWidth / 2);
   var mainPinTopCord = Math.round(mainPin.offsetTop + mainPin.offsetHeight / 2);
 
-  initMainPin();
+  initMap();
 
   window.map = {
     mainPinLeftCord: mainPinLeftCord,
