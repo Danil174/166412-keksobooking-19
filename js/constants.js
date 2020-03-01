@@ -13,6 +13,13 @@
     'bungalo': 'Бунгало'
   };
 
+  var userPinParams = {
+    WIDTH: 62,
+    HEIGHT: 82,
+    MIN_Y: 130,
+    MAX_Y: 630
+  };
+
   var mockData = {
     APARTMENT: ['palace', 'flat', 'house', 'bungalo'],
     CHECKIN_TIME: ['12:00', '13:00', '14:00'],
@@ -42,6 +49,7 @@
     validationConsts: validationConsts,
     keycodes: keycodes,
     mockData: mockData,
-    APARTMENT_TRANSLATION: APARTMENT_TRANSLATION
+    APARTMENT_TRANSLATION: APARTMENT_TRANSLATION,
+    userPinParams: userPinParams
   };
 })();

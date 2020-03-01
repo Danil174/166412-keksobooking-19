@@ -8,6 +8,7 @@
   var initMainPin = function () {
     mainPin.addEventListener('click', onMainPinClick);
     mainPin.addEventListener('keydown', onMainPinEnterKeydown);
+    window.dragndrop.itemDragNDrop(mainPin, map);
   };
 
   var enableMap = function () {
@@ -29,13 +30,7 @@
     }
   };
 
-  var mainPinLeftCord = Math.round(mainPin.offsetLeft + mainPin.offsetWidth / 2);
-  var mainPinTopCord = Math.round(mainPin.offsetTop + mainPin.offsetHeight / 2);
+  window.form.setFormAdress(mainPin.offsetLeft + (mainPin.offsetWidth / 2), mainPin.offsetTop + (mainPin.offsetHeight / 2));
 
   initMainPin();
-
-  window.map = {
-    mainPinLeftCord: mainPinLeftCord,
-    mainPinTopCord: mainPinTopCord
-  };
 })();

@@ -71,10 +71,6 @@
     checkIn.value = evt.currentTarget.value;
   };
 
-  var getPinEdgeCords = function () {
-    addressInput.value = window.map.mainPinLeftCord + ', ' + (window.map.mainPinTopCord + window.constants.PIN_MARGIN_TOP);
-  };
-
   var unlockForm = function () {
     form.classList.remove('ad-form--disabled');
     unlockFormFieldsets();
@@ -83,11 +79,11 @@
     checkIn.addEventListener('change', onCheckInChange);
     checkOut.addEventListener('change', onCheckOutChange);
     submitBtn.addEventListener('click', validateForm);
-
-    getPinEdgeCords();
   };
 
-  addressInput.value = window.map.mainPinLeftCord + ', ' + window.map.mainPinTopCord;
+  var setFormAdress = function (firstPart, secondPart) {
+    addressInput.value = Math.round(firstPart) + ', ' + Math.round(secondPart);
+  };
 
   for (var j = 0; j < fieldsets.length; j++) {
     fieldsets[j].disabled = true;
@@ -95,7 +91,7 @@
 
   window.form = {
     unlockForm: unlockForm,
-    addressInput: addressInput
+    setFormAdress: setFormAdress
   };
 
 })();
