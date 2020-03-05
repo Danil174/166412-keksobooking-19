@@ -13,6 +13,13 @@
     'bungalo': 'Бунгало'
   };
 
+  var userPinParams = {
+    WIDTH: 62,
+    HEIGHT: 82,
+    MIN_Y: 130,
+    MAX_Y: 630
+  };
+
   var PIN_MARGIN_TOP = 48;
 
   var validationConsts = {
@@ -33,6 +40,7 @@
     PIN_MARGIN_TOP: PIN_MARGIN_TOP,
     validationConsts: validationConsts,
     keycodes: keycodes,
-    APARTMENT_TRANSLATION: APARTMENT_TRANSLATION
+    APARTMENT_TRANSLATION: APARTMENT_TRANSLATION,
+    userPinParams: userPinParams
   };
 })();
