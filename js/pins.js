@@ -3,8 +3,6 @@
 (function () {
   var pinTempalete = document.querySelector('#pin').content;
   var newMessageTemplate = pinTempalete.querySelector('.map__pin');
-  var fragment = document.createDocumentFragment();
-  var advArray;
 
   var renderPin = function (pin) {
     var newPin = newMessageTemplate.cloneNode(true);
@@ -27,14 +25,6 @@
     return newPin;
   };
 
-  window.data.xhr.addEventListener('load', function () {
-    advArray = window.data.xhr.response;
-
-    for (var i = 0; i < advArray.length; i++) {
-      fragment.appendChild(renderPin(advArray[i]));
-    }
-  });
-
   var onPinClick = function (pin) {
     window.card.renderCard(pin);
   };
@@ -46,6 +36,6 @@
   };
 
   window.pins = {
-    fragment: fragment
+    renderPin: renderPin
   };
 })();
