@@ -33,8 +33,8 @@
 
         var itemPositionX = moveEvt.clientX - startCoords.x;
         var itemPositionY = moveEvt.clientY - startCoords.y;
-        var leftBorder = -item.offsetWidth / 2;
-        var rightBorder = area.clientWidth - item.offsetWidth / 2;
+        var leftBorder = -window.constants.userPinParams.WIDTH / 2;
+        var rightBorder = area.clientWidth - Math.round(window.constants.userPinParams.WIDTH / 2);
         var topBorder = window.constants.userPinParams.MIN_Y - window.constants.userPinParams.HEIGHT;
         var bottomBorder = window.constants.userPinParams.MAX_Y - window.constants.userPinParams.HEIGHT;
 
