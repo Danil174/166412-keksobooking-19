@@ -14,7 +14,7 @@
     });
   };
 
-  var onFiltersChange = function (ads) {
+  var onFilterChange = function (ads) {
     removePins();
     window.card.removeCard();
     window.pins.appendPins(window.filters.filterByType(ads).slice(0, window.constants.NUMBER_OF_ADS), mapContainer);
@@ -22,7 +22,7 @@
 
   var initFilter = function (ads) {
     typeFilter.addEventListener('change', function () {
-      onFiltersChange(ads);
+      onFilterChange(ads);
     });
   };
 
