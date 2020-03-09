@@ -1,55 +1,49 @@
 'use strict';
 
 (function () {
-  // var map = document.querySelector('.map__pins');
-  // var pin = document.querySelector('.map__pin--main');
+  var checkNumberInInterval = function (number, lowerLimit, upperLimit) {
+    if (number > lowerLimit && number < upperLimit) {
+      return number;
+    } else {
+      if (number < lowerLimit) {
+        return lowerLimit;
+      } else {
+        return upperLimit;
+      }
+    }
+  };
+
   var itemDragNDrop = function (item, area) {
     item.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
       window.form.setFormAdress(item.offsetLeft + (window.constants.userPinParams.WIDTH / 2), item.offsetTop + window.constants.userPinParams.HEIGHT);
 
-      var dragged = false;
-
       var startCoords = {
-        x: evt.clientX,
-        y: evt.clientY
+        x: evt.clientX - item.offsetLeft,
+        y: evt.clientY - item.offsetTop
+      };
+
+      var shift = {
+        x: 0,
+        y: 0
       };
 
       var onMouseMove = function (moveEvt) {
         moveEvt.preventDefault();
-        dragged = true;
 
-        var shift = {
-          x: startCoords.x - moveEvt.clientX,
-          y: startCoords.y - moveEvt.clientY
-        };
+        var itemPositionX = moveEvt.clientX - startCoords.x;
+        var itemPositionY = moveEvt.clientY - startCoords.y;
+        var leftBorder = -window.constants.userPinParams.WIDTH / 2;
+        var rightBorder = area.clientWidth - Math.round(window.constants.userPinParams.WIDTH / 2);
+        var topBorder = window.constants.userPinParams.MIN_Y - window.constants.userPinParams.HEIGHT;
+        var bottomBorder = window.constants.userPinParams.MAX_Y - window.constants.userPinParams.HEIGHT;
 
-        startCoords = {
-          x: moveEvt.clientX,
-          y: moveEvt.clientY
-        };
+        shift.x = checkNumberInInterval(itemPositionX, leftBorder, rightBorder);
+        shift.y = checkNumberInInterval(itemPositionY, topBorder, bottomBorder);
 
-        var bottomEdge = window.constants.userPinParams.MAX_Y - window.constants.userPinParams.HEIGHT;
-        var topEdge = window.constants.userPinParams.MIN_Y - window.constants.userPinParams.HEIGHT;
-        var rightEdge = area.offsetWidth - window.constants.userPinParams.WIDTH;
-        var newTop = item.offsetTop - shift.y;
-        var newLeft = item.offsetLeft - shift.x;
-
-        if (newTop < topEdge) {
-          newTop = topEdge;
-        } else if (newTop > bottomEdge) {
-          newTop = bottomEdge;
-        }
-
-        if (newLeft < 0) {
-          newLeft = 0;
-        } else if (newLeft > rightEdge) {
-          newLeft = rightEdge;
-        }
-
-        item.style.top = newTop + 'px';
-        item.style.left = newLeft + 'px';
-        window.form.setFormAdress(newLeft + (window.constants.userPinParams.WIDTH / 2), newTop + window.constants.userPinParams.HEIGHT);
+        item.style.top = shift.y + 'px';
+        item.style.left = shift.x + 'px';
+        window.form.setFormAdress(shift.x + (window.constants.userPinParams.WIDTH / 2), shift.y + window.constants.userPinParams.HEIGHT);
       };
 
       var onMouseUp = function (upEvt) {
@@ -57,14 +51,6 @@
 
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
-
-        if (dragged) {
-          var onClickPreventDefault = function (clickEvt) {
-            clickEvt.preventDefault();
-            item.removeEventListener('click', onClickPreventDefault);
-          };
-          item.addEventListener('click', onClickPreventDefault);
-        }
       };
 
       document.addEventListener('mousemove', onMouseMove);
