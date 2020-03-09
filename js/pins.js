@@ -25,6 +25,17 @@
     return newPin;
   };
 
+
+  var appendPins = function (ads, container) {
+    var fragment = document.createDocumentFragment();
+
+    ads.forEach(function (ad) {
+      fragment.appendChild(renderPin(ad));
+    });
+
+    container.appendChild(fragment);
+  };
+
   var onPinClick = function (pin) {
     window.card.renderCard(pin);
   };
@@ -36,6 +47,6 @@
   };
 
   window.pins = {
-    renderPin: renderPin
+    appendPins: appendPins
   };
 })();
