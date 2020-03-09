@@ -7,7 +7,6 @@
   var roomsFilter = filtersContainer.querySelector('#housing-rooms');
   var guestsFilter = filtersContainer.querySelector('#housing-guests');
   var features = filtersContainer.querySelectorAll('.map__checkbox');
-  var wifi = filtersContainer.querySelector('#filter-wifi');
 
   var filterByType = function (ads) {
     var similarPins = ads.filter(function (ad) {
