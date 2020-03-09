@@ -20,6 +20,8 @@
     MAX_Y: 630
   };
 
+  var NUMBER_OF_ADS = 5;
+
   var PIN_MARGIN_TOP = 48;
 
   var validationConsts = {
@@ -37,6 +39,7 @@
   };
 
   window.constants = {
+    NUMBER_OF_ADS: NUMBER_OF_ADS,
     PIN_MARGIN_TOP: PIN_MARGIN_TOP,
     validationConsts: validationConsts,
     keycodes: keycodes,

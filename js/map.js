@@ -4,13 +4,32 @@
   var map = document.querySelector('.map');
   var mainPin = document.querySelector('.map__pin--main');
   var mapContainer = document.querySelector('.map__pins');
-  var fragment = document.createDocumentFragment();
+  var typeFilter = document.querySelector('#housing-type');
+
+  var removePins = function () {
+    var adsPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+    Array.from(adsPins).forEach(function (pin) {
+      pin.remove();
+    });
+  };
+
+  var onFilterChange = function (ads) {
+    removePins();
+    window.card.removeCard();
+    window.pins.appendPins(window.filters.filterByType(ads).slice(0, window.constants.NUMBER_OF_ADS), mapContainer);
+  };
+
+  var initFilter = function (ads) {
+    typeFilter.addEventListener('change', function () {
+      onFilterChange(ads);
+    });
+  };
 
   var successHandler = function (data) {
-    for (var i = 0; i < data.length; i++) {
-      fragment.appendChild(window.pins.renderPin(data[i]));
-    }
-    mapContainer.appendChild(fragment);
+    initFilter(data);
+    removePins();
+    window.pins.appendPins(data.slice(0, window.constants.NUMBER_OF_ADS), mapContainer);
   };
 
   var errorHandler = function (errorMessage) {
