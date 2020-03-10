@@ -45,32 +45,29 @@
     return similarPins;
   };
 
-  var filterByFeature = function (ads, feature) {
-    if (feature.checked) {
-      var similarPins = ads.filter(function (ad) {
-        var check = false;
-        for (var i = 0; i < ad.offer.features.length; i++) {
-          if (ad.offer.features[i] === feature.value) {
-            check = true;
-            break;
-          }
-        }
-        return check;
+  var compareFeatures = function (array, ads) {
+    var similarData = ads;
+
+    for (var i = 0; i < array.length; i++) {
+      similarData = similarData.filter(function (data) {
+        return data.offer.features.includes(array[i]);
       });
-      return similarPins;
-    } else {
-      return ads;
     }
+
+    return similarData;
   };
 
-  var checkFeatures = function (ads) {
-    var filteredAds = ads;
+  var filterByFeatures = function (ads) {
+    var checkedFeature = [];
+
     features.forEach(function (feature) {
-      filteredAds = filterByFeature(ads, feature);
+      if (feature.checked) {
+        checkedFeature.push(feature.value);
+      }
     });
-    return filteredAds;
-  };
 
+    return compareFeatures(checkedFeature, ads);
+  };
 
   var filterByAll = function (ads) {
     var filteredAds = ads;
@@ -79,7 +76,7 @@
     filteredAds = filterByGuests(filteredAds);
     filteredAds = filterByPrice(filteredAds);
     filteredAds = filterByPrice(filteredAds);
-    filteredAds = checkFeatures(filteredAds);
+    filteredAds = filterByFeatures(filteredAds);
     return filteredAds;
   };
 
