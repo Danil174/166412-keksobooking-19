@@ -2,7 +2,7 @@
 
 (function () {
   var checkNumberInInterval = function (number, lowerLimit, upperLimit) {
-    if (number > lowerLimit && number < upperLimit) {
+    if (number >= lowerLimit && number <= upperLimit) {
       return number;
     } else {
       if (number < lowerLimit) {
@@ -13,20 +13,18 @@
     }
   };
 
+  var Coords = function (x, y) {
+    this.x = x;
+    this.y = y;
+  };
+
   var itemDragNDrop = function (item, area) {
     item.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
       window.form.setFormAdress(item.offsetLeft + (window.constants.userPinParams.WIDTH / 2), item.offsetTop + window.constants.userPinParams.HEIGHT);
 
-      var startCoords = {
-        x: evt.clientX - item.offsetLeft,
-        y: evt.clientY - item.offsetTop
-      };
-
-      var shift = {
-        x: 0,
-        y: 0
-      };
+      var startCoords = new Coords(evt.clientX - item.offsetLeft, evt.clientY - item.offsetTop);
+      var shift = new Coords(0, 0);
 
       var onMouseMove = function (moveEvt) {
         moveEvt.preventDefault();
