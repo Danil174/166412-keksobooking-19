@@ -14,7 +14,7 @@
       return fileName.endsWith(it);
     });
 
-    if (file) {
+    if (mathces) {
       var reader = new FileReader();
 
       reader.addEventListener('load', function () {
