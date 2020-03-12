@@ -38,7 +38,7 @@
     VISITOR_EXCEPTOPN: '0',
   };
 
-  var DEBOUNCE_INTERVAL = 1500;
+  var DEBOUNCE_INTERVAL = 500;
 
   window.constants = {
     DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,

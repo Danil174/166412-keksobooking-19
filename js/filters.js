@@ -10,7 +10,11 @@
 
   var filterByType = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      return ad.offer.type === (typeFilter.value === 'any' ? ad.offer.type : typeFilter.value);
+      if (typeFilter.value === 'any') {
+        return true;
+      } else {
+        return ad.offer.type === typeFilter.value;
+      }
     });
     return similarPins;
   };
@@ -33,14 +37,22 @@
 
   var filterByRooms = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      return ad.offer.rooms + '' === (roomsFilter.value === 'any' ? ad.offer.rooms + '' : roomsFilter.value);
+      if (roomsFilter.value === 'any') {
+        return true;
+      } else {
+        return ad.offer.rooms === roomsFilter.value;
+      }
     });
     return similarPins;
   };
 
   var filterByGuests = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      return ad.offer.guests + '' === (guestsFilter.value === 'any' ? ad.offer.guests + '' : guestsFilter.value);
+      if (guestsFilter.value === 'any') {
+        return true;
+      } else {
+        return ad.offer.guests === guestsFilter.value;
+      }
     });
     return similarPins;
   };
