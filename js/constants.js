@@ -38,7 +38,10 @@
     VISITOR_EXCEPTOPN: '0',
   };
 
+  var DEBOUNCE_INTERVAL = 500;
+
   window.constants = {
+    DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,
     NUMBER_OF_ADS: NUMBER_OF_ADS,
     PIN_MARGIN_TOP: PIN_MARGIN_TOP,
     validationConsts: validationConsts,
