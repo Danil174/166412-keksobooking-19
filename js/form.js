@@ -91,7 +91,8 @@
     apartmentType.removeEventListener('change', setPriceMinValue);
     checkIn.removeEventListener('change', onCheckInChange);
     checkOut.removeEventListener('change', onCheckOutChange);
-    submitBtn.removeEventListener('click', validateForm);resetBtn.removeEventListener('click', resetBtnHandler);
+    submitBtn.removeEventListener('click', validateForm);
+    resetBtn.removeEventListener('click', resetBtnHandler);
   };
 
   var successMessage = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
