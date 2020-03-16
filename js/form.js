@@ -14,6 +14,8 @@
   var rooms = form.querySelector('#room_number');
   var visitors = form.querySelector('#capacity');
   var resetBtn = form.querySelector('.ad-form__reset');
+  var successMessage = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
+  var errorMessage = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
 
   var titleWarningText = 'Длина заголовка должна быть от ' + window.constants.validationConsts.MIN_TITLE_LENGTH + ' до ' + window.constants.validationConsts.MAX_TITLE_LENGTH + ' символов';
   var capacityWarningText = 'Число гостей не соотвествует числу комнат';
@@ -94,9 +96,6 @@
     submitBtn.removeEventListener('click', validateForm);
     resetBtn.removeEventListener('click', resetBtnHandler);
   };
-
-  var successMessage = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
-  var errorMessage = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
 
   var hideValidityMessage = function (evt) {
     evt.target.setCustomValidity('');
