@@ -5,6 +5,7 @@
   var mainPin = document.querySelector('.map__pin--main');
   var mapContainer = document.querySelector('.map__pins');
   var filtersContainer = document.querySelector('.map__filters');
+  var filters = filtersContainer.childNodes;
 
   var removePins = function () {
     var adsPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -47,15 +48,15 @@
   };
 
   var errorHandler = function (errorMessage) {
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
+    var error = document.createElement('div');
+    error.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    error.style.position = 'absolute';
+    error.style.left = 0;
+    error.style.right = 0;
+    error.style.fontSize = '20px';
 
-    node.textContent = errorMessage;
-    document.body.insertAdjacentElement('afterbegin', node);
+    error.textContent = 'Данные не загружены, обратитесь в службу поддержки. ' + errorMessage;
+    document.body.prepend(error);
   };
 
   var initMainPin = function () {
@@ -66,6 +67,7 @@
 
   var enableMap = function () {
     map.classList.remove('map--faded');
+    window.service.itemsSetDisable(filters, false);
     window.form.unlockForm();
     window.data.load(successHandler, errorHandler);
   };
@@ -85,14 +87,20 @@
 
   var initMap = function () {
     map.classList.add('map--faded');
-    initMainPin();
-
+    mainPin.style.left = window.constants.userPinParams.LEFT;
+    mainPin.style.top = window.constants.userPinParams.TOP;
+    removePins();
     window.card.removeCard();
+    window.filters.resetFilters();
+    window.service.itemsSetDisable(filters, true);
+    window.form.lockForm();
+    initMainPin();
+    window.form.setFormAdress(mainPin.offsetLeft + (mainPin.offsetWidth / 2), mainPin.offsetTop + (mainPin.offsetHeight / 2));
   };
 
   initMap();
 
-  window.form.setFormAdress(mainPin.offsetLeft + (mainPin.offsetWidth / 2), mainPin.offsetTop + (mainPin.offsetHeight / 2));
-
-  initMainPin();
+  window.map = {
+    initMap: initMap
+  };
 })();

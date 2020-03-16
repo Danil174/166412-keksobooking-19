@@ -17,12 +17,12 @@
     WIDTH: 62,
     HEIGHT: 82,
     MIN_Y: 130,
-    MAX_Y: 630
+    MAX_Y: 630,
+    LEFT: '570px',
+    TOP: '375px'
   };
 
   var NUMBER_OF_ADS = 5;
-
-  var PIN_MARGIN_TOP = 48;
 
   var validationConsts = {
     MIN_TITLE_LENGTH: 30,
@@ -40,10 +40,17 @@
 
   var DEBOUNCE_INTERVAL = 500;
 
+  var serverParams = {
+    LOAD_URL: 'https://js.dump.academy/keksobooking/data',
+    UPLOAD_URL: 'https://js.dump.academy/keksobooking',
+    SUCCESS_STATUS_CODE: 200,
+    TIMEOUT: 1000
+  };
+
   window.constants = {
+    serverParams: serverParams,
     DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,
     NUMBER_OF_ADS: NUMBER_OF_ADS,
-    PIN_MARGIN_TOP: PIN_MARGIN_TOP,
     validationConsts: validationConsts,
     keycodes: keycodes,
     APARTMENT_TRANSLATION: APARTMENT_TRANSLATION,
