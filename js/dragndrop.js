@@ -2,14 +2,11 @@
 
 (function () {
   var checkNumberInInterval = function (number, lowerLimit, upperLimit) {
-    if (number > lowerLimit && number < upperLimit) {
+    if (number >= lowerLimit && number <= upperLimit) {
       return number;
     } else {
-      if (number < lowerLimit) {
-        return lowerLimit;
-      } else {
-        return upperLimit;
-      }
+      var limit = (number < lowerLimit) ? lowerLimit : upperLimit;
+      return limit;
     }
   };
 
