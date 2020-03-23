@@ -10,10 +10,10 @@
     }
   };
 
-  var itemDragNDrop = function (item, area) {
+  var moveItemInArea = function (item, area) {
     item.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
-      window.form.setFormAdress(item.offsetLeft + (window.constants.userPinParams.WIDTH / 2), item.offsetTop + window.constants.userPinParams.HEIGHT);
+      window.form.setFormAdress(item.offsetLeft + (window.constants.UserPinParams.WIDTH / 2), item.offsetTop + window.constants.UserPinParams.HEIGHT);
 
       var startCoords = {
         x: evt.clientX - item.offsetLeft,
@@ -30,17 +30,17 @@
 
         var itemPositionX = moveEvt.clientX - startCoords.x;
         var itemPositionY = moveEvt.clientY - startCoords.y;
-        var leftBorder = -window.constants.userPinParams.WIDTH / 2;
-        var rightBorder = area.clientWidth - Math.round(window.constants.userPinParams.WIDTH / 2);
-        var topBorder = window.constants.userPinParams.MIN_Y - window.constants.userPinParams.HEIGHT;
-        var bottomBorder = window.constants.userPinParams.MAX_Y - window.constants.userPinParams.HEIGHT;
+        var leftBorder = -window.constants.UserPinParams.WIDTH / 2;
+        var rightBorder = area.clientWidth - Math.round(window.constants.UserPinParams.WIDTH / 2);
+        var topBorder = window.constants.UserPinParams.MIN_Y - window.constants.UserPinParams.HEIGHT;
+        var bottomBorder = window.constants.UserPinParams.MAX_Y - window.constants.UserPinParams.HEIGHT;
 
         shift.x = checkNumberInInterval(itemPositionX, leftBorder, rightBorder);
         shift.y = checkNumberInInterval(itemPositionY, topBorder, bottomBorder);
 
         item.style.top = shift.y + 'px';
         item.style.left = shift.x + 'px';
-        window.form.setFormAdress(shift.x + (window.constants.userPinParams.WIDTH / 2), shift.y + window.constants.userPinParams.HEIGHT);
+        window.form.setFormAdress(shift.x + (window.constants.UserPinParams.WIDTH / 2), shift.y + window.constants.UserPinParams.HEIGHT);
       };
 
       var onMouseUp = function (upEvt) {
@@ -56,6 +56,6 @@
   };
 
   window.dragndrop = {
-    itemDragNDrop: itemDragNDrop
+    moveItemInArea: moveItemInArea
   };
 })();

@@ -1,15 +1,15 @@
 'use strict';
 
 (function () {
-  var newXHR = function (onSuccess, onError) {
+  var initXHR = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
 
-    xhr.timeout = window.constants.serverParams.TIMEOUT;
+    xhr.timeout = window.constants.ServerParams.TIMEOUT;
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === window.constants.serverParams.SUCCESS_STATUS_CODE) {
+      if (xhr.status === window.constants.ServerParams.SUCCESS_STATUS_CODE) {
         onSuccess(xhr.response);
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -26,16 +26,16 @@
   };
 
   var load = function (onSuccess, onError) {
-    var xhr = newXHR(onSuccess, onError);
+    var xhr = initXHR(onSuccess, onError);
 
-    xhr.open('GET', window.constants.serverParams.LOAD_URL);
+    xhr.open('GET', window.constants.ServerParams.LOAD_URL);
     xhr.send();
   };
 
   var upload = function (data, onSuccess, onError) {
-    var xhr = newXHR(onSuccess, onError);
+    var xhr = initXHR(onSuccess, onError);
 
-    xhr.open('POST', window.constants.serverParams.UPLOAD_URL);
+    xhr.open('POST', window.constants.ServerParams.UPLOAD_URL);
     xhr.send(data);
   };
 

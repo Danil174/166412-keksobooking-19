@@ -11,11 +11,7 @@
 
   var filterByType = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      if (typeFilter.value === 'any') {
-        return true;
-      } else {
-        return ad.offer.type === typeFilter.value;
-      }
+      return ad.offer.type === (typeFilter.value === window.constants.FILTER_DEFAULT_VALUE ? ad.offer.type : typeFilter.value);
     });
     return similarPins;
   };
@@ -24,11 +20,11 @@
     var similarPins = ads.filter(function (ad) {
       switch (priceFilter.value) {
         case 'low':
-          return ad.offer.price <= 10000;
+          return ad.offer.price <= window.constants.PriceFilterValues.MIN_PRICE;
         case 'middle':
-          return ad.offer.price > 10000 && ad.offer.price < 50000;
+          return ad.offer.price > window.constants.PriceFilterValues.MIN_PRICE && ad.offer.price < window.constants.PriceFilterValues.MAX_PRICE;
         case 'high':
-          return ad.offer.price >= 50000;
+          return ad.offer.price >= window.constants.PriceFilterValues.MAX_PRICE;
         default:
           return true;
       }
@@ -38,22 +34,14 @@
 
   var filterByRooms = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      if (roomsFilter.value === 'any') {
-        return true;
-      } else {
-        return ad.offer.rooms === roomsFilter.value;
-      }
+      return ad.offer.rooms.toString() === (roomsFilter.value === window.constants.FILTER_DEFAULT_VALUE ? ad.offer.rooms.toString() : roomsFilter.value);
     });
     return similarPins;
   };
 
   var filterByGuests = function (ads) {
     var similarPins = ads.filter(function (ad) {
-      if (guestsFilter.value === 'any') {
-        return true;
-      } else {
-        return ad.offer.guests === guestsFilter.value;
-      }
+      return ad.offer.guests.toString() === (guestsFilter.value === window.constants.FILTER_DEFAULT_VALUE ? ad.offer.guests.toString() : guestsFilter.value);
     });
     return similarPins;
   };
@@ -71,15 +59,15 @@
   };
 
   var filterByFeatures = function (ads) {
-    var checkedFeature = [];
+    var checkedFeatures = [];
 
     features.forEach(function (feature) {
       if (feature.checked) {
-        checkedFeature.push(feature.value);
+        checkedFeatures.push(feature.value);
       }
     });
 
-    return compareFeatures(checkedFeature, ads);
+    return compareFeatures(checkedFeatures, ads);
   };
 
   var selectsToDefault = function () {

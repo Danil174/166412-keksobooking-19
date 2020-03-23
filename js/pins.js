@@ -41,7 +41,7 @@
   };
 
   var onPinKeydown = function (evt, pin) {
-    if (evt.keyCode === window.constants.keycodes.ENTER_KEYCODE) {
+    if (evt.keyCode === window.constants.KeyCodes.ENTER_KEYCODE) {
       window.card.renderCard(pin);
     }
   };
